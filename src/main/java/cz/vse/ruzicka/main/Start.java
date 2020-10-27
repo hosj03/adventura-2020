@@ -47,8 +47,8 @@ public class Start extends Application
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Karkulka");
-        primaryStage.setFullScreen(true);
-        primaryStage.show();
+//        primaryStage.setFullScreen(true);
+
 
         FXMLLoader loader = new FXMLLoader();
         InputStream stream = getClass().getClassLoader().getResourceAsStream(("scene.fxml"));
@@ -58,7 +58,8 @@ public class Start extends Application
         primaryStage.setScene(scene);
 
         MainController controller = loader.getController();
-        controller.init();
-
+        IHra hra = new Hra();
+        controller.init(hra);
+        primaryStage.show();
     }
 }

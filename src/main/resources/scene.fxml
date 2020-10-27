@@ -6,11 +6,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
+
+<?import javafx.scene.control.Label?>
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="cz.vse.ruzicka.MainController"
-            prefHeight="400.0" prefWidth="600.0">
-    <Label fx:id="labelA">A</Label>
-    <Label fx:id="labelB">B</Label>
-    <Label fx:id="labelC">C</Label>
-</VBox>
+            fx:controller="cz.vse.ruzicka.MainController">
+   <top>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+          <Label fx:id="locationName">Nazev</Label>
+          <Label fx:id="locationDescription">Popis</Label>
+      </VBox>
+   </top>
+</BorderPane>

@@ -208,4 +208,8 @@ public class Prostor {
         }
         return nalezenaVec;
     }
+
+    public String getPopis() {
+        return popis;
+    }
 }
