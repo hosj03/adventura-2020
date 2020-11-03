@@ -1,20 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<?import javafx.scene.control.Label?>
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="cz.vse.ruzicka.MainController">
+<?import javafx.scene.text.Font?>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.ruzicka.MainController">
    <top>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="300.0" prefWidth="200" BorderPane.alignment="CENTER">
           <Label fx:id="locationName">Nazev</Label>
           <Label fx:id="locationDescription">Popis</Label>
       </VBox>
    </top>
+    <right>
+        <VBox spacing="20">
+            <!--Vychody-->
+            <VBox>
+                <Label>
+                    <text>Vychody</text>
+                    <font>
+                        <Font name="System Bold" size="14"/>
+                    </font>
+                </Label>
+                <VBox fx:id="vychody">
+
+                </VBox>
+            </VBox>
+            <!--Batoh-->
+<!--                <Label>Batoh</Label>-->
+<!--                <VBox fx:id="baoh">-->
+<!--    -->
+<!--                </VBox>-->
+            <VBox>
+
+            </VBox>
+            <!--Predmety-->
+                <Label>Predmety</Label>
+                <VBox fx:id="veci" spacing="10">
+
+                </VBox>
+            <VBox>
+
+            </VBox>
+        </VBox>
+    </right>
+    <bottom>
+        <VBox>
+            <TextArea fx:id="textOutput"></TextArea>
+            <TextField fx:id="textInput"></TextField>
+        </VBox>
+
+    </bottom>
 </BorderPane>

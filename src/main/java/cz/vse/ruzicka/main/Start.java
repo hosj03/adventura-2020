@@ -49,7 +49,6 @@ public class Start extends Application
         primaryStage.setTitle("Karkulka");
 //        primaryStage.setFullScreen(true);
 
-
         FXMLLoader loader = new FXMLLoader();
         InputStream stream = getClass().getClassLoader().getResourceAsStream(("scene.fxml"));
         Parent root = loader.load(stream);
