@@ -113,9 +113,12 @@ public class Hra implements IHra {
      *  
      *  @return     odkaz na herní plán
      */
-     public HerniPlan getHerniPlan(){
+    public HerniPlan getHerniPlan(){
         return herniPlan;
      }
-    
+
+    public Batoh getBatoh() {
+        return batoh;
+    }
 }
 

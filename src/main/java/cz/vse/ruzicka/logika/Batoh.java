@@ -56,6 +56,9 @@ seznamVeci = new HashMap<String, Vec>();
         return nalezenaVec;
     }
 
+    public Map<String, Vec> getSeznamVeci() {
+        return seznamVeci;
+    }
 }
 
 

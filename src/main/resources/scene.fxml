@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Font?>
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.ruzicka.MainController">
    <top>
-      <VBox prefHeight="300.0" prefWidth="200" BorderPane.alignment="CENTER">
-          <Label fx:id="locationName">Nazev</Label>
+      <VBox alignment="CENTER" prefHeight="58.0" prefWidth="478.0" BorderPane.alignment="CENTER">
+          <Label fx:id="locationName">
+              <text>Nazev</text>
+              <font>
+                  <Font name="System Bold" size="20" />
+              </font>
+          </Label>
           <Label fx:id="locationDescription">Popis</Label>
       </VBox>
    </top>
@@ -18,35 +24,52 @@
                 <Label>
                     <text>Vychody</text>
                     <font>
-                        <Font name="System Bold" size="14"/>
+                        <Font name="System Bold" size="14" />
                     </font>
                 </Label>
-                <VBox fx:id="vychody">
+
+                <VBox fx:id="vychody" spacing="10">
 
                 </VBox>
             </VBox>
             <!--Batoh-->
-<!--                <Label>Batoh</Label>-->
-<!--                <VBox fx:id="baoh">-->
-<!--    -->
-<!--                </VBox>-->
+                <Label>
+                    <text>Batoh</text>
+                    <font>
+                        <Font name="System Bold" size="14" />
+                    </font>
+                    </Label>
+                <VBox fx:id="batoh" spacing="10">
+
+                </VBox>
             <VBox>
 
             </VBox>
             <!--Predmety-->
-                <Label>Predmety</Label>
+                <Label>
+                    <text>Predmety</text>
+                    <font>
+                        <Font name="System Bold" size="14" />
+                    </font>
+                </Label>
                 <VBox fx:id="veci" spacing="10">
 
                 </VBox>
             <VBox>
 
             </VBox>
+         <BorderPane.margin>
+            <Insets right="20.0" />
+         </BorderPane.margin>
         </VBox>
     </right>
     <bottom>
         <VBox>
-            <TextArea fx:id="textOutput"></TextArea>
-            <TextField fx:id="textInput"></TextField>
+            <TextArea fx:id="textOutput" editable="false" />
+            <TextField fx:id="textInput" />
+            <BorderPane.margin>
+                <Insets left="20" right="20.0" />
+            </BorderPane.margin>
         </VBox>
 
     </bottom>

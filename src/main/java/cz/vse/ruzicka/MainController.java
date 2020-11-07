@@ -7,6 +7,8 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import cz.vse.ruzicka.logika.IHra;
 import cz.vse.ruzicka.logika.Prostor;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
@@ -21,6 +23,7 @@ public class MainController {
     public Label locationDescription;
     public VBox vychody;
     public VBox veci;
+    public VBox batoh;
     public TextArea textOutput;
     public TextField textInput;
 
@@ -37,33 +40,23 @@ public class MainController {
 
         updateExits();
         updateItems();
+        updateBatoh();
     }
+
+    private void updateBatoh() {
+        Collection<Vec> batohList = hra.getBatoh().getSeznamVeci().values();
+        batoh.getChildren().clear();
+
+        projdiList(batoh, batohList, "poloz");
+    }
+
+
 
     private void updateItems() {
         Collection<Vec> veciList = getAktualniProstor().getSeznamVeci().values();
         veci.getChildren().clear();
 
-        for (Vec vec : veciList) {
-            String nazevVeci = vec.getJmeno();
-            Label veciLabel = new Label(nazevVeci);
-            if(vec.jePrenositelna()){
-                veciLabel.setCursor(Cursor.HAND);
-                veciLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        String vysledek = hra.zpracujPrikaz("seber " + nazevVeci);
-                        System.out.println(vysledek);
-                        textOutput.appendText(vysledek+"\n\n");
-                        update();
-                    }
-                });
-            } else {
-//                toDO vec neni prenositelna
-            }
-
-            veci.getChildren().add(veciLabel);
-        }
-
+        projdiList(veci, veciList, "seber");
     }
 
     private void updateExits() {
@@ -73,16 +66,7 @@ public class MainController {
         for (Prostor prostor : vychodyList) {
             String nazevVychodu = prostor.getNazev();
             Label labelNazevVychodu = new Label(nazevVychodu);
-            labelNazevVychodu.setCursor(Cursor.HAND);
-            labelNazevVychodu.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    String vysledek = hra.zpracujPrikaz("jdi " + nazevVychodu);
-                    System.out.println(vysledek);
-                    textOutput.appendText(vysledek+"\n\n");
-                    update();
-                }
-            });
+            onClickLabel(labelNazevVychodu, "jdi");
             vychody.getChildren().add(labelNazevVychodu);
         }
 
@@ -93,6 +77,43 @@ public class MainController {
     }
 
 
-//        labelC.setOnMouseClicked();
+    private void projdiList(VBox box,Collection<Vec> list, String prikaz) {
+        for (Vec vec : list) {
+            String nazevVeci = vec.getJmeno();
+            Label veciLabel = new Label(nazevVeci);
+
+//            veciLabel.setLabelFor();
+            if(vec.jePrenositelna()){
+                onClickLabel(veciLabel, prikaz);
+            } else {
+                veciLabel.setTooltip(new Tooltip("nelze přenést"));
+                setLabelImg(veciLabel);
+            }
+
+            box.getChildren().add(veciLabel);
+        }
+    }
+
+    private void onClickLabel(Label label, String prikaz) {
+        setLabelImg(label);
+        label.setCursor(Cursor.HAND);
+        label.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                String vysledek = hra.zpracujPrikaz(prikaz + " " + label.getText());
+                textOutput.appendText(prikaz + " " + label.getText() + "\n\n");
+                textOutput.appendText(vysledek + "\n\n");
+                update();
+            }
+        });
+    }
+
+    private void setLabelImg(Label label) {
+        Image img = new Image(label.getText() + ".jpg");
+        ImageView view = new ImageView(img);
+        view.setFitHeight(20);
+        view.setPreserveRatio(true);
+        label.setGraphic(view);
+    }
 
 }
