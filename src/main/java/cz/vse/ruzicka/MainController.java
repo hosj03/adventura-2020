@@ -3,15 +3,19 @@ package cz.vse.ruzicka;
 import cz.vse.ruzicka.logika.Vec;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import cz.vse.ruzicka.logika.IHra;
 import cz.vse.ruzicka.logika.Prostor;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
+import java.security.Key;
 import java.util.Collection;
 
 public class MainController {
@@ -82,7 +86,6 @@ public class MainController {
             String nazevVeci = vec.getJmeno();
             Label veciLabel = new Label(nazevVeci);
 
-//            veciLabel.setLabelFor();
             if(vec.jePrenositelna()){
                 onClickLabel(veciLabel, prikaz);
             } else {
@@ -100,12 +103,16 @@ public class MainController {
         label.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                String vysledek = hra.zpracujPrikaz(prikaz + " " + label.getText());
-                textOutput.appendText(prikaz + " " + label.getText() + "\n\n");
-                textOutput.appendText(vysledek + "\n\n");
-                update();
+                executeCommand(prikaz, label.getText());
             }
         });
+    }
+
+    private void executeCommand(String prikaz, String kontent) {
+        String vysledek = hra.zpracujPrikaz(prikaz + " " + kontent);
+        textOutput.appendText(prikaz + " " + kontent + "\n\n");
+        textOutput.appendText(vysledek + "\n\n");
+        update();
     }
 
     private void setLabelImg(Label label) {
@@ -116,4 +123,11 @@ public class MainController {
         label.setGraphic(view);
     }
 
+    public void onInputKeyPressed(KeyEvent keyEvent) {
+        if(keyEvent.getCode() == KeyCode.ENTER) {
+            String[] parts = textInput.getText().split(" ");
+            executeCommand(parts[0], parts[1]);
+            textInput.clear();
+        }
+    }
 }

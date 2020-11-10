@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.ruzicka.MainController">
+<BorderPane stylesheets="styles.css"
+        xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.ruzicka.MainController" prefHeight="600">
    <top>
       <VBox alignment="CENTER" prefHeight="58.0" prefWidth="478.0" BorderPane.alignment="CENTER">
           <Label fx:id="locationName">
@@ -66,7 +67,7 @@
     <bottom>
         <VBox>
             <TextArea fx:id="textOutput" editable="false" />
-            <TextField fx:id="textInput" />
+            <TextField fx:id="textInput" onKeyPressed="#onInputKeyPressed"/>
             <BorderPane.margin>
                 <Insets left="20" right="20.0" />
             </BorderPane.margin>
